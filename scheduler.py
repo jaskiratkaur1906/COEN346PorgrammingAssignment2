@@ -1,7 +1,12 @@
+from process import Process
+
 class Scheduler:
 
-    num_of_proccesses = 0
 
     #Constructor
-    def __init__(self,proccessList):
-        self.processList = proccessList
+    def __init__(self,process_list):
+        self.process_list = process_list
+        self.q1 = []
+        self.q2 = []
+
+        process_list[0].print_info()

@@ -1,6 +1,6 @@
  # This is a sample Python script.
 
-class Proccess:
+class Process:
 
     # open input.txt and read file content
     with open('input.txt', 'r') as file:
@@ -9,7 +9,7 @@ class Proccess:
     # get the Number of Processes of the program
     NumberOfProcesses = int(lines.pop(0))
 
-    # list containing the proccess id for each process
+    # list containing the process id for each process
     process_id = []
     # list containing the Arrival Time for each process
     arrivalTime = []
@@ -77,12 +77,9 @@ class Proccess:
         print("process priority is: " +  str(self.get_priority()))
 
 
-process_list = []
+p1 = Process(3,'p12',50,100,2000)
 
-for i in range(Proccess.NumberOfProcesses):
-    p = Proccess(Proccess.NumberOfProcesses,Proccess.process_id[i],Proccess.arrivalTime[i],Proccess.burstTime[i],Proccess.priority[i])
-    process_list.append(p)
-for i in range(Proccess.NumberOfProcesses):
-    print('--------------------------------')
-    process_list[i].print_info()
+p1.set_pid()
+p1.print_info()
+
 
