@@ -1,7 +1,7 @@
 from process import Process
+from scheduler import Scheduler
 import time
 start_time = time.time()
-
 
 process_list = []
 
@@ -13,5 +13,13 @@ for i in range(Process.NumberOfProcesses):
     process_list[i].print_info()
 
 
+s = Scheduler(process_list)
 
-print("--- %s seconds ---" % (time.time() - start_time))
+s.initialize_scheduler()
+s.print_q2_info()
+
+
+
+print("\n Total program time --- %s seconds ---" % (time.time() - start_time))
+
+

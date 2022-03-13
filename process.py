@@ -69,7 +69,7 @@ class Process:
     def get_priority(self):
         return self.priority
 
-    # Extra class methods
+    # Print function
     def print_info(self):
         print("process id is: " + self.get_id())
         print("process arrival time is: " + str(self.get_arrival_time()))
@@ -77,9 +77,6 @@ class Process:
         print("process priority is: " +  str(self.get_priority()))
 
 
-p1 = Process(3,'p12',50,100,2000)
 
-p1.set_pid()
-p1.print_info()
 
 
