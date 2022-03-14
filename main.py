@@ -21,7 +21,7 @@ priority = []
 for line in lines:
 
     process_id.append((line.split(" ")[0]))
-    arrival_time.append((line.split(" ")[1]))
+    arrival_time.append(int(line.split(" ")[1]))
     burst_time.append(int(line.split(" ")[2]))
     priority.append(int(line.split(" ")[3]))
 
@@ -37,10 +37,10 @@ for i in range(number_of_processes):
     process_list[i].print_info()
 
 
-#s = Scheduler(process_list)
+s = Scheduler(process_list)
 
-#s.initialize_scheduler()
-#s.print_q2_info()
+s.initialize_scheduler()
+s.print_q2_info()
 
 
 
