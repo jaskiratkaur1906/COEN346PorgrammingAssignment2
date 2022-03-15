@@ -36,12 +36,13 @@ for i in range(number_of_processes):
     print('--------------------------------')
     process_list[i].print_info()
 
+Scheduler(process_list)
 
 s = Scheduler(process_list)
 
 s.initialize_scheduler()
-s.print_q2_info()
 
+s.print_q2_info()
 
 
 print("\n Total program time --- %s seconds ---" % (time.time() - start_time))

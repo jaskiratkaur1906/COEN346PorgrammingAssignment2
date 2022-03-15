@@ -3,49 +3,96 @@ import threading
 
 class Scheduler:
 
-    scheduler_start_time = time.time()
-    q2_expired = True
+    # Initial flag for Q2 (which means Q1 is active) at first
+    # Class variable known to all instances of schduler
 
     #Constructor
     def __init__(self,m_process_list: list):
 
         self.output_file = open("output_temp.txt", "w")
         self.s_process_list = m_process_list.copy()
+
+        self.scheduler_start_time = time.time()
+        self.total_elapsed_time = 0
+
+        self.Q2_expired = True
         self.Q1 = []
         self.Q2 = []
 
 
     def add_to_expired(self,process):
         print("Adding to expired queue...")
-        if Scheduler.q2_expired:
+        if self.Q2_expired:
             self.Q2.append(process)
 
-    # Used to initialize scheduler before shceduler begins (before t = 1 s)
+        else:
+            self.Q1.append(process)
+
+    # Used to initialize scheduler before scheduler begins (before t = 1000 ms)
     def initialize_scheduler(self):
 
-        elapsed_time = time.time() - Scheduler.scheduler_start_time
-        elapsed_time = elapsed_time * 1000
+        elapsed_time = self.update_time()
 
-        if(elapsed_time < 1000):
+        while(elapsed_time < 1000):
 
-                print("Initalizing shceduler")
+                print("Initializing shceduler for t < 1000 ms")
 
                 for process in self.s_process_list:
                     if process.arrival_time < 1000:
-                        print(f"Proces {process.pid} is less than 1000 ms ")
+
+                        # Append to expired queue and then pop from the list of processes
                         self.add_to_expired(process)
+                        self.s_process_list.pop(0)
+
+                        # Update elapsed time
+                        elapsed_time = self.update_time()
 
                     else:
-                        print(f"Proces {process.pid} is greater than 1000 ms ")
+                        # Processes w/ arrival times greater than 1000 ms will wait
+                        elapsed_time = self.update_time()
 
+        while(elapsed_time >= 1000 and elapsed_time < 5000):
+
+            #print("Run shceduler for t >= 1000 ms")
+
+            while len(self.Q1) == 0 and len(self.Q2) != 0:
+
+                #Execute processes in Q2
+                #
+                #
+                # C O D E   H E R E
+                #
+                #
+
+                #pop() used to simulate that a process has finished executing its time slice in Q2
+                print(f"Poped {self.Q2[0].pid}")
+                self.Q2.pop(0)
+
+
+            elapsed_time = self.update_time()
+
+    # Updates the time, call this each time you would like to update the time.
+    def update_time(self):
+
+        return (time.time() - self.scheduler_start_time) * 1000
+
+    # Used for debugging not necessary for the assignment
     def print_q2_info(self):
 
-        print("\nThe process in the expired queue are: ")
 
-        for process in self.Q2:
+        # When Q2 is empty
+        if len(self.Q2) == 0:
+            print("Proccesses in Q2 have been popped")
+        else:
 
-            print(process.pid)
+        # When Q2 is not empty
+            print("\nThe process in the expired queue are: ")
 
+            for process in self.Q2:
+
+                print(process.pid)
+
+    # Not complete yet
     def bubble_sort(self,Q2):
             n = len(Q2)
 

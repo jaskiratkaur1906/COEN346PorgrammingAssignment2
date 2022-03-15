@@ -11,6 +11,7 @@ class Process:
         self.priority = priority
         self.time_remaining = burst_time
         self.execution_time_completed = 0
+        self.process_state = None
 
 
  #Set functions
@@ -28,6 +29,12 @@ class Process:
     def set_priority(self):
             self.priority = int(input("Enter process priority: "))
 
+    def set_time_remaining(self,time):
+            self.time_remaining = time
+
+    def set_process_state(self,state):
+        self.process_state = state
+
 
  # Get functions
     def get_id(self):
@@ -41,6 +48,12 @@ class Process:
 
     def get_priority(self):
         return self.priority
+
+    def get_time_remaining(self):
+        return self.time_remaining
+
+    def get_process_state(self):
+        return self.process_state
 
     # Print function
     def print_info(self):
