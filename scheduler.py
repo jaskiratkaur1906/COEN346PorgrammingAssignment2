@@ -29,7 +29,7 @@ class Scheduler:
             self.Q1.append(process)
 
     # Used to initialize scheduler before scheduler begins (before t = 1000 ms)
-    def initialize_scheduler(self):
+    def s_initialize(self):
 
         elapsed_time = self.update_time()
 
