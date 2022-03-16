@@ -92,26 +92,20 @@ class Scheduler:
 
                 print(process.pid)
 
-    # Not complete yet
-    def bubble_sort(self,Q2):
-            n = len(Q2)
+     def bubble_sort(self, Q2_expired):
+        if Q2_expired == True:
+
+            n = len(Q2_expired)
 
             for i in range(n):
 
                 already_sorted = True
 
                 for j in range(n - i - 1):
-                    if Q2[j].get_priority() > Q2[j + 1].get_priority():
-                        # If the item you're looking at is greater than its
-                        # adjacent value, then swap them
-                        Q2[j], Q2[j + 1] = Q2[j + 1], Q2[j]
-
-                        # Since you had to swap two elements,
-                        # set the `already_sorted` flag to `False` so the
-                        # algorithm doesn't finish prematurely
+                    if Q2_expired[j].get_priority() > Q2_expired[j + 1].get_priority():
+                        Q2_expired[j], Q2_expired[j + 1] = Q2_expired[j + 1], Q2_expired[j]
                         already_sorted = False
 
-                # If there were no swaps during the last iteration,
-                # the array is already sorted, and you can terminate
                 if already_sorted:
                     break
+
